@@ -1,0 +1,23 @@
+# Python virtual environment
+backend/venv/
+
+# Python cache files
+__pycache__/
+*.pyc
+
+# Frontend dependencies
+frontend/node_modules/
+
+# Frontend build output
+frontend/dist/
+
+# Environment variables / secrets
+.env
+*.env
+
+# VS Code settings - optional
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db

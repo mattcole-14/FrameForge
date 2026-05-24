@@ -1,0 +1,1 @@
+KOKORO_MOVES_MOVES = []

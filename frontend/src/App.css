@@ -5,8 +5,13 @@ body {
   font-family: Arial, sans-serif;
 }
 
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
 main {
-  padding: 32px;
+  padding: 0;
 }
 
 button {
@@ -46,4 +51,171 @@ td {
 
 th {
   background: #1f2937;
+}
+
+.game-grid,
+.character-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.game-card,
+.character-card {
+  display: block;
+  padding: 20px;
+  border-radius: 12px;
+  background: #1f2937;
+  color: white;
+  text-decoration: none;
+  border: 1px solid #374151;
+}
+
+.game-card h2 a {
+  color: white;
+  text-decoration: none;
+}
+
+.game-card h2 a:hover {
+  text-decoration: underline;
+}
+
+.character-card:hover {
+  background: #374151;
+}
+
+.coming-soon {
+  opacity: 0.65;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #030712;
+  border-bottom: 1px solid #374151;
+  padding: 16px 32px;
+}
+
+.logo {
+  color: white;
+  font-weight: bold;
+  font-size: 1.2rem;
+  text-decoration: none;
+}
+
+.navbar nav {
+  display: flex;
+  gap: 16px;
+}
+
+.navbar nav a {
+  color: #d1d5db;
+  text-decoration: none;
+}
+
+.navbar nav a:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+tbody tr {
+  cursor: pointer;
+}
+
+tbody tr:hover {
+  background: #1f2937;
+}
+
+.character-detail-page {
+  padding: 2rem;
+  color: white;
+}
+
+.character-hero {
+  max-width: 1200px;
+  margin: 3rem auto 4rem;
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.character-model-placeholder {
+  position: relative;
+  width: 420px;
+  height: 620px;
+  min-height: 620px;
+  border-radius: 26px;
+  overflow: hidden;
+
+  background:
+    radial-gradient(circle at center, rgba(255, 160, 210, 0.2), transparent 58%),
+    rgba(5, 8, 15, 0.88);
+
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
+}
+
+.character-model-placeholder canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  position: absolute;
+  inset: 0;
+}
+
+.character-info h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.character-info h2 {
+  margin-top: 1.5rem;
+}
+
+.character-tabs {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.character-tabs button {
+  padding: 0.75rem 1.25rem;
+  border: none;
+  border-radius: 999px;
+  background: #1f2937;
+  color: white;
+  cursor: pointer;
+}
+
+.character-tabs button:hover {
+  background: #374151;
+}
+
+.tab-content {
+  background: #111827;
+  border-radius: 16px;
+  padding: 1.5rem;
+}
+
+.data-card {
+  background: #020617;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 900px) {
+  .character-hero {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .character-model-placeholder {
+    width: min(360px, 100%);
+    height: 520px;
+    min-height: 520px;
+  }
 }

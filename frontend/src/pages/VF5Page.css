@@ -1,0 +1,171 @@
+.vf5-page {
+  min-height: 100vh;
+  width: 100%;
+  padding: 4rem 2rem;
+  color: white;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  position: relative;
+  overflow: hidden;
+}
+
+.vf5-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at center, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.5)),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.78));
+  pointer-events: none;
+  z-index: 0;
+}
+
+.vf5-page > * {
+  position: relative;
+  z-index: 1;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 2rem;
+  color: #d1d5db;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.back-link:hover {
+  color: white;
+}
+
+.vf5-hero {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 3rem;
+}
+
+.vf5-hero h1 {
+  margin: 0;
+  font-size: clamp(2.8rem, 7vw, 5rem);
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+}
+
+.vf5-hero p {
+  margin: 1rem auto 0;
+  max-width: 560px;
+  color: #cbd5e1;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.roster-title {
+  max-width: 1200px;
+  margin: 0 auto 1.25rem;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.character-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.character-card {
+  min-height: 350px;
+  padding: 1.25rem;
+  border-radius: 18px;
+  text-decoration: none;
+  color: white;
+
+  background: rgba(8, 12, 20, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.character-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255, 255, 255, 0.26);
+  background: rgba(16, 24, 38, 0.88);
+}
+
+.character-card h3 {
+  margin: 0 0 0.75rem;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+}
+
+.character-card p {
+  margin: 0.25rem 0;
+  color: #cbd5e1;
+}
+
+.game-logo {
+  width: min(520px, 90%);
+  display: block;
+  margin: 0 auto 1.25rem;
+  filter: drop-shadow(0 18px 40px rgba(0, 0, 0, 0.75));
+}
+
+.character-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.character-card-img {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+
+  width: auto;
+  height: 100%;
+
+  transform: translateX(-50%);
+  object-fit: contain;
+
+  opacity: 0.85;
+  z-index: 0;
+}
+
+.character-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.92),
+    rgba(0, 0, 0, 0.25)
+  );
+  z-index: 1;
+}
+
+.character-card-info {
+  position: relative;
+  z-index: 2;
+  padding: 1rem;
+  margin: -1.25rem;
+  margin-top: auto;
+
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.9),
+    rgba(0, 0, 0, 0.35),
+    transparent
+  );
+}

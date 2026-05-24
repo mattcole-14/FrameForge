@@ -1,0 +1,1 @@
+RAIDOU_MOVES_MOVES = []

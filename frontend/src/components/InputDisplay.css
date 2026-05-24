@@ -1,0 +1,32 @@
+.input-display {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+}
+
+.input-icon {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  display: inline-block;
+  vertical-align: middle;
+  filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.55));
+}
+
+.input-symbol {
+  color: #dbe3ef;
+  font-weight: 800;
+  font-size: 1rem;
+  margin: 0 0.05rem;
+}
+
+.input-arrow {
+  color: #9ca3af;
+}
+
+.input-text-token,
+.input-fallback {
+  color: #e5e7eb;
+  font-weight: 700;
+}

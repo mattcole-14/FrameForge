@@ -1,0 +1,1 @@
+RIG_MOVES_MOVES = []

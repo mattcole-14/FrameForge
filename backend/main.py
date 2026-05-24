@@ -2,28 +2,52 @@ from fastapi import FastAPI
 # setup done 4-28-2026
 
 from fastapi.middleware.cors import CORSMiddleware
-from data.characters import characters
-from data.akira_moves import akira_moves
-from data.aoi_moves import aoi_moves
-from data.jean_moves import jean_moves
-from data.eileen_moves import eileen_moves
-from data.jacky_moves import jacky_moves    
-from data.pai_moves import pai_moves
+
+from data.doa.characters import doa_characters
+from data.doa.moves import DOA_MOVES
+from data.vf5.combos import vf5_combos
+from data.vf5.moves import vf5_moves
+from data.vf5.characters import characters
+from data.vf5.aoi_moves import (
+    aoi_normal_moves,
+    aoi_tenchi_moves,
+    aoi_sundome_moves,
+    aoi_jump_attacks,
+    aoi_back_attacks,
+    aoi_down_attacks,
+    aoi_throws,
+    aoi_reversals,
+    aoi_rising_attacks,
+)
 
 app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
     allow_credentials=True,
     allow_methods=["*"],
-    allow_headers=["*"]
+    allow_headers=["*"],
 )
 
-all_moves = (akira_moves + aoi_moves + jean_moves + eileen_moves + jacky_moves + pai_moves)
+all_characters = [*characters, *doa_characters]
+all_moves = [*vf5_moves, *DOA_MOVES]
+
+aoi_move_tabs = {
+    "normal": aoi_normal_moves,
+    "tenchi": aoi_tenchi_moves,
+    "sundome": aoi_sundome_moves,
+    "jump-attacks": aoi_jump_attacks,
+    "back-attacks": aoi_back_attacks,
+    "down-attacks": aoi_down_attacks,
+    "throws": aoi_throws,
+    "reversals": aoi_reversals,
+    "rising-attacks": aoi_rising_attacks,
+}
 
 character_lookup = {}
-for character in characters:
+
+for character in all_characters:
     character_lookup[character["id"]] = character
 
 @app.get("/")
@@ -33,7 +57,7 @@ def home():
 
 @app.get("/characters")
 def get_characters():
-    return characters
+    return all_characters
 
 
 @app.get("/characters/{character_id}")
@@ -43,9 +67,17 @@ def get_character(character_id: int):
     return {"error": "Character not found"}
 
 
+@app.get("/characters/2/moves/tabs/{tab_name}")
+def get_aoi_moves_by_tab(tab_name: str):
+    if tab_name not in aoi_move_tabs:
+        return {"error": "Move tab not found"}
+
+    return aoi_move_tabs[tab_name]
+
+
 @app.get("/moves")
-def get_all_moves():
-    return all_moves
+def get_vf5_moves():
+    return vf5_moves
 
 # Get moves for a specific character
 @app.get("/characters/{character_id}/moves")
@@ -63,7 +95,7 @@ def get_character_moves(character_id: int):
 @app.get("/moves/search")
 def search_moves(name: str):
     results = []
-    for move in all_moves:
+    for move in vf5_moves:
         if name.lower() in move["name"].lower():
             results.append(move)
     return results
@@ -73,7 +105,7 @@ def search_moves(name: str):
 @app.get("/moves/fast")
 def get_fast_moves(max_startup: int = 12):
     results = []
-    for move in all_moves:
+    for move in vf5_moves:
         startup = move["startup_frames"]
         if isinstance(startup, int) and startup <= max_startup:
             results.append(move)
@@ -85,7 +117,7 @@ def get_fast_moves(max_startup: int = 12):
 @app.get("/moves/safe")
 def get_safe_moves(min_on_block: int =-5):
     results = []
-    for move in all_moves:
+    for move in vf5_moves:
         on_block = move["on_block"]
         if isinstance(on_block, int) and on_block >= min_on_block:
             results.append(move)
@@ -100,7 +132,7 @@ def filter_moves(
     min_on_block: int | None = None,
 ):
     results = []
-    for move in all_moves:
+    for move in vf5_moves:
         if character_id is not None and move["character_id"] != character_id:
             continue
         if hit_level and hit_level.lower() not in str(move["hit_level"]).lower():
@@ -118,6 +150,21 @@ def filter_moves(
 
         results.append(move)
     return results
+
+@app.get("/combos")
+def get_vf5_combos():
+    return vf5_combos
+
+
+@app.get("/characters/{character_id}/combos")
+def get_character_combos(character_id: int):
+    character_combos = []
+
+    for combo in vf5_combos:
+        if combo["character_id"] == character_id:
+            character_combos.append(combo)
+
+    return character_combos
 
 
 

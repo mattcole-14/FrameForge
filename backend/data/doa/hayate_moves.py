@@ -1,0 +1,1 @@
+HAYATE_MOVES_MOVES = []
