@@ -1,4 +1,4 @@
-# VirtuaDex
+# VirtuaDex  (FrameForge)
 
 VirtuaDex is a web application for 3D fighting games, providing character information, 
 move lists, frame data, combos, and game-specific resources in a clean and searchable interface.
