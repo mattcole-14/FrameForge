@@ -60,6 +60,69 @@ def get_characters():
     return all_characters
 
 
+@app.get("/games/{game_id}/characters")
+def get_characters_by_game(game_id: str):
+    gid = game_id.lower()
+    if gid in ("vf5", "vf"):
+        return characters
+    if gid == "doa":
+        return doa_characters
+    return {"error": "Game not found"}
+
+
+@app.get("/games/{game_id}/characters/{character_id}")
+def get_character_by_game(game_id: str, character_id: int):
+    gid = game_id.lower()
+    source = None
+    if gid in ("vf5", "vf"):
+        source = characters
+    elif gid == "doa":
+        source = doa_characters
+    else:
+        return {"error": "Game not found"}
+
+    for ch in source:
+        if ch.get("id") == character_id:
+            return ch
+
+    return {"error": "Character not found"}
+
+
+@app.get("/games/{game_id}/characters/{character_id}/moves")
+def get_character_moves_by_game(game_id: str, character_id: int):
+    gid = game_id.lower()
+    if gid in ("vf5", "vf"):
+        moves_source = vf5_moves
+    elif gid == "doa":
+        moves_source = DOA_MOVES
+    else:
+        return {"error": "Game not found"}
+
+    character_moves = [m for m in moves_source if m.get("character_id") == character_id]
+    return character_moves
+
+
+@app.get("/games/{game_id}/characters/{character_id}/moves/tabs/{tab_name}")
+def get_character_moves_by_game_tab(game_id: str, character_id: int, tab_name: str):
+    gid = game_id.lower()
+    # VF5 special tabs (AOI example)
+    if gid in ("vf5", "vf") and character_id == 2:
+        if tab_name not in aoi_move_tabs:
+            return {"error": "Move tab not found"}
+        return aoi_move_tabs[tab_name]
+
+    # Fallback: filter by character_id from the game's moves
+    if gid in ("vf5", "vf"):
+        moves_source = vf5_moves
+    elif gid == "doa":
+        moves_source = DOA_MOVES
+    else:
+        return {"error": "Game not found"}
+
+    results = [m for m in moves_source if m.get("character_id") == character_id]
+    return results
+
+
 @app.get("/characters/{character_id}")
 def get_character(character_id: int):
     if character_id in character_lookup:

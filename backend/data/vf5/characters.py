@@ -13,7 +13,7 @@ characters = [
             "difficulty": "Advanced",
             'description': 'Aoi Umenokoji is a defensive fighter who specializes in reversals, parries, and stance-based options. She rewards patient players who can read the opponent’s attacks and punish predictable offense.',
             'image_url': '/images/vf5/aoi.png',
-            'model_url': None,
+            'model_url': '/models/vf5/aoi.glb',
         },
         {
             "id": 3,

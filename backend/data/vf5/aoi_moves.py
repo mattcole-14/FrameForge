@@ -2129,3 +2129,12 @@ aoi_normal_moves = [
     },
 
 ]
+
+aoi_tenchi_moves = [move for move in aoi_normal_moves if move["category"] == "Tenchi In'you"]
+aoi_sundome_moves = [move for move in aoi_normal_moves if move["category"] == "Sundome"]
+aoi_jump_attacks = [move for move in aoi_normal_moves if move["category"] == "Jump Attacks"]
+aoi_back_attacks = [move for move in aoi_normal_moves if move["category"] == "Back Attacks"]
+aoi_down_attacks = [move for move in aoi_normal_moves if move["category"] == "Down Attacks"]
+aoi_throws = [move for move in aoi_normal_moves if move["category"] == "Throws"]
+aoi_reversals = [move for move in aoi_normal_moves if move["category"] == "Reversals"]
+aoi_rising_attacks = [move for move in aoi_normal_moves if move["category"] == "Rising Attacks"]

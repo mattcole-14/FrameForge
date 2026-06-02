@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import "./HomePage.css";
-import logo from "../assets/3dfc-logo.png";
+import logo from "../assets/Virtuadex.png";
 import homeBg from "../assets/home-bg.png";
 import vfLogo from "../assets/vf-logo.png";
 import tekkenLogo from "../assets/tekken-logo.png";
@@ -54,7 +54,7 @@ export default function HomePage() {
         <p className="home-eyebrow">3D Fighting Game Hub</p>
 
         <h1 className="home-title">
-          3D Fighter <span>Central</span>
+          3D Fighters <span>VirtuaDex</span>
         </h1>
 
         <p className="home-description">

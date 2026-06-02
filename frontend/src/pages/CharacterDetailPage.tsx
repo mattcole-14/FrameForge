@@ -84,7 +84,7 @@ export default function CharacterDetailPage({
     setCharacter(null);
     setMoves([]);
 
-    fetch(`http://127.0.0.1:8000/characters/${finalCharacterId}`)
+    fetch(`http://127.0.0.1:8000/games/${finalGameId}/characters/${finalCharacterId}`)
       .then((res) => {
         if (!res.ok) {
           throw new Error("Character not found");
@@ -97,7 +97,7 @@ export default function CharacterDetailPage({
         setError("Could not load character.");
       });
 
-    fetch(`http://127.0.0.1:8000/characters/${finalCharacterId}/moves`)
+    fetch(`http://127.0.0.1:8000/games/${finalGameId}/characters/${finalCharacterId}/moves`)
       .then((res) => {
         if (!res.ok) {
           throw new Error("Moves not found");

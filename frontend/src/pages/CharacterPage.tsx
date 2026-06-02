@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useMatch, useParams } from "react-router-dom";
 import "./CharacterPage.css";
-import aoiImg from "../assets/characters/vf/aoi.png";
+import aoiImg from "../assets/image/vf/aoi.png";
 import InputDisplay from "../components/InputDisplay";
 
 const aoiMoveTabs = [
@@ -61,7 +61,7 @@ function CharacterPage() {
     setCharacter(null);
     setMoves([]);
 
-    fetch(`http://127.0.0.1:8000/characters/${characterId}`)
+    fetch(`http://127.0.0.1:8000/games/${gameId}/characters/${characterId}`)
       .then((response) => response.json())
       .then((data) => {
         if (data.error) {
@@ -77,8 +77,8 @@ function CharacterPage() {
       });
 
     const movesUrl = isVf5
-      ? `http://127.0.0.1:8000/characters/${characterId}/moves/tabs/${activeTab}`
-      : `http://127.0.0.1:8000/characters/${characterId}/moves`;
+      ? `http://127.0.0.1:8000/games/${gameId}/characters/${characterId}/moves/tabs/${activeTab}`
+      : `http://127.0.0.1:8000/games/${gameId}/characters/${characterId}/moves`;
 
     fetch(movesUrl)
       .then((response) => response.json())
